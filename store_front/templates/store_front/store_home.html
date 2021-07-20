@@ -2,10 +2,14 @@
 
 {% block content %}
 
-<div>
-    <h2>This is some things</h2>
+<div style = "border: 1px solid burlywood;">
+    <h2>These are some of our finest products!</h2>
 
-    {%  include 'store_front/snippets/body_snippet.html' %}
+    {% for product in products %}
+
+        {% include 'store_front/snippets/body_snippet.html' with value=product %}
+
+    {%  endfor %}
 </div>
 
 {% endblock content %}
