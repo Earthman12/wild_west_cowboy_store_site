@@ -21,13 +21,15 @@ from store_front.views import (
 )
 
 from account.views import (
-    logout_view,
     registration_view,
+    logout_view,
+    login_view,
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', store_home_view, name = "home"),
     path('register/', registration_view, name = "register"),
-    path('logout/', logout_view, name = "logout")
+    path('logout/', logout_view, name = "logout"),
+    path('login/', login_view, name = "login"),
 ]

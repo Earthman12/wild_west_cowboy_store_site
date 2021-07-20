@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Login here partner</h2>
+<form method="POST">
+
+    {% csrf_token %}
+
+    {% for field in login_form %}
+
+        <p>
+            {{field.label_tag}}
+            {{field}}
+
+            {% if field.help_text %}
+                <small style="color:green;">{{field.help_text}}</small>
+            {% endif %}
+
+            {% for error in field.errors %}
+                <p style="color:red;">{{error}}</p>
+            {% endfor %}
+
+            {% if login_form.non_field_errors %}
+                <div style = "color:crimson;">
+                    <p>{{login_form.non_field_errors}}</p>
+                </div>
+            {% endif %}
+        </p>
+
+    {% endfor %}
+
+    <button type="submit">Sign In</button>
+
+</form>
+
+{% endblock content %}
