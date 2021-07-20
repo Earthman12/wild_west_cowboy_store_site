@@ -5,6 +5,14 @@
     <head>
         <title>Wild West Cowboy Store</title>
         <h1>Howdy Partner & Welcome to Wild West Cowboy Store!</h1>
+
+        {% if request.user.is_authenticated %}
+            <p>Howdy, {{request.user.username}} | <a href = "{% url 'logout' %}">Logout</a></p>
+
+        {% else %}
+            <p><a href = "{% url 'register' %}">Register</a> | <a href = "#">Login</a></p>
+
+        {% endif %}
     </head>
 
     <body>
@@ -17,7 +25,7 @@
 
     <footer>
 
-        <h2>This is the footer</h2>
+        <h2>Y'all come on back now!</h2>
 
     </footer>
 
