@@ -20,7 +20,12 @@ from store_front.views import (
     store_home_view,
 )
 
+from account.views import (
+    registration_view,
+)
+
 urlpatterns = [
-    path('', store_home_view, name = "home"),
     path('admin/', admin.site.urls),
+    path('', store_home_view, name = "home"),
+    path('register/', registration_view, name = "register")
 ]
