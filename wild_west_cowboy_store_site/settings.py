@@ -35,6 +35,7 @@ INSTALLED_APPS = [
 
     #   My apps
     'store_front',
+    'account',
 
     #   Django apps
     'django.contrib.admin',
@@ -72,6 +73,9 @@ TEMPLATES = [
         },
     },
 ]
+
+#   Overrides default behavior for django user object and telling it that we are authenticating users with this custom one and need to tell django where it is
+AUTH_USER_MODEL = 'account.Account'
 
 WSGI_APPLICATION = 'wild_west_cowboy_store_site.wsgi.application'
 
