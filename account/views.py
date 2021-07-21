@@ -18,8 +18,10 @@ def registration_view(request):
             raw_password = form.cleaned_data.get('password')
             #   then want to authenticate the account, it will determine if the credentials are valid and then will create the user object
             account = authenticate(email=email, password=raw_password)
+            
             #   once we have user object we call login and pass the request and the account and then we redirect to the home store page
-            login(request, account)
+            #login(request, account)
+
             return redirect('home')
 
         #   if the form was not valid, if there were issues with the form, pass the form to the template to display errors
