@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 
-from account.forms import AccountAuthenticationForm, RegistrationForm
+from account.forms import AccountAuthenticationForm, RegistrationForm, AccountUpdateForm
 
 
 # Create your views here.
@@ -74,4 +74,32 @@ def login_view(request):
     context['login_form'] = form
 
     return render(request, 'account/login.html', context)
-    
+
+def account_view(request):
+
+    #   If the user is not authenticated then we want to redirect to login screen to login because they need to be logged into an account to in order to view it
+    if not request.user.is_authenticated:
+        return redirect("login")
+
+    context = {}
+
+    #   If it is a POST request we need to get the form
+    if request.POST:
+        #   Need to pass the user as an instance variable because it is referenced in the AccountUpdateForm to get the primary key(pk) of a user that is authenticated. It must be passed so that it can be used in the AccountUpdateForm to query the account if it exists
+        form = AccountUpdateForm(request.POST, instance=request.user)
+        #   If the form is valid than we are good to go and can just save it to the database
+        if form.is_valid():
+            form.save()
+
+        #   Otherwise we want to set some initial properties
+        else:
+            form = AccountUpdateForm(
+                #   These are the values that will be displayed in the form as soon as they visit their profile
+                initial = {
+                    "email": request.user.email,
+                    "username": request.user.username,
+                }
+            )
+        #   Finally add the form to the context
+        context['account_form'] = form
+        return render(request, 'account/account.html', context)

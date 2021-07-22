@@ -4,6 +4,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 #   The authenticate method checks to see if users credentials are valid
 from django.contrib.auth import authenticate
+from django.forms import fields
 
 
 from account.models import Account
@@ -37,3 +38,37 @@ class AccountAuthenticationForm(forms.ModelForm):
 
             if not authenticate(email = email, password = password):
                 raise forms.ValidationError("Invalid Login Credentials")
+
+#   Form for updating user accounts
+class AccountUpdateForm(forms.ModelForm):
+
+    #   There are no parameters because we don't have a password
+    class Meta:
+        model: Account
+        #   These are the fields that you want to be able to change
+        fields = ('email', 'username')
+    
+    #   Instead of using clean() and go through all the properties of the form like above, we can clean individual properties in the form instead
+    #   clean_email() will just reference the email and whether the form is valid or not, it will run the method to apply any extra logic you want it to
+    def clean_email(self):
+        #   Want to make sure the form is valid first and then check the email so that it doesn't equal another email thats already in the database
+        if self.is_valid():
+            email = self.cleaned_data['email']
+            #   Check to see if the account exists
+            try:
+                account = Account.objects.exclude(pk=self.instance.pk).get(email=email)
+            #   If the account does not exists then it is good to go, and we return the email and we can update the account to the new email
+            except Account.DoesNotExist:
+                return email
+            #   Otherwise raise an error
+            raise forms.ValidationError('Email "%s" already in use.' % account.email)#  Could also just write email since it's already a variable above
+
+    #   ^^^^^Do the same thing for the username that was done for the email above^^^^^
+    def clean_username(self):
+        if self.is_valid():
+            username = self.cleaned_data['username']
+            try:
+                account = Account.objects.exclude(pk=self.instance.pk).get(username=username)
+            except Account.DoesNotExist:
+                return username
+            raise forms.ValidationError('Username "%s" already in use.' % account.username)

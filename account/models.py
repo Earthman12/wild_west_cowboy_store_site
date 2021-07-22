@@ -67,7 +67,7 @@ class Account(AbstractBaseUser):
     objects = MyAccountManager()
 
     def __str__(self):
-        return self.email + ", " + self.username
+        return self.email
 
     #   Functions that are required for building a custom user
     #   this one gets the users permission
