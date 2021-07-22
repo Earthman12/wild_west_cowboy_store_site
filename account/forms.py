@@ -44,7 +44,7 @@ class AccountUpdateForm(forms.ModelForm):
 
     #   There are no parameters because we don't have a password
     class Meta:
-        model: Account
+        model= Account
         #   These are the fields that you want to be able to change
         fields = ('email', 'username')
     

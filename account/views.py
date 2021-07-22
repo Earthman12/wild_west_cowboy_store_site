@@ -91,15 +91,15 @@ def account_view(request):
         if form.is_valid():
             form.save()
 
-        #   Otherwise we want to set some initial properties
-        else:
-            form = AccountUpdateForm(
-                #   These are the values that will be displayed in the form as soon as they visit their profile
-                initial = {
-                    "email": request.user.email,
-                    "username": request.user.username,
-                }
-            )
+    #   Otherwise we want to set some initial properties
+    else:
+        form = AccountUpdateForm(
+            #   These are the values that will be displayed in the form as soon as they visit their profile
+            initial = {
+                "email": request.user.email,
+                "username": request.user.username,
+            }
+        )
         #   Finally add the form to the context
-        context['account_form'] = form
-        return render(request, 'account/account.html', context)
+    context['account_form'] = form
+    return render(request, 'account/account.html', context)
