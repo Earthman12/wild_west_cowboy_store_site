@@ -2,14 +2,23 @@
 
 {% block content %}
 
-<div style = "border: 1px solid burlywood;">
-    <h2>These are some of our finest products!</h2>
+<div class = "container">
+    <div class = "d-flex flex-column">
 
-    {% for product in products %}
+        <h2>These are some of our finest products!</h2>
 
-        {% include 'store_front/snippets/body_snippet.html' with value=product %}
+        {% for product in products %}
+    
+            <div style = "border: 3px dotted white; margin: 5px; padding: 2px">
+            
+                {% include 'store_front/snippets/body_snippet.html' with value=product %}
+    
+            </div>
+    
+        {%  endfor %}
 
-    {%  endfor %}
+    </div>
+
 </div>
 
 {% endblock content %}
