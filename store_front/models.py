@@ -14,5 +14,5 @@ class Product(models.Model):
 
     #   This changes the display names in admin page
     class Meta:
-        verbose_name = "The Product"
-        verbose_name_plural = "All the Products"
+        verbose_name = "Product"
+        verbose_name_plural = "All Products"
