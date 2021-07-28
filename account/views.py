@@ -89,7 +89,14 @@ def account_view(request):
         form = AccountUpdateForm(request.POST, instance=request.user)
         #   If the form is valid than we are good to go and can just save it to the database
         if form.is_valid():
+            #   When a save is made in the account, it will still display the old initial values rather than the new changed one(The account is not passing the intial values if the form is valid). form.initial{} can be used to set the new values when the new values are added to the account
+            form.initial = {
+                "email" : request.POST['email'],
+                "username" : request.POST['username'],
+            }
             form.save()
+            #   Add success message that the form was updated
+            context['success_message'] = "You're updated Partner!"
 
     #   Otherwise we want to set some initial properties
     else:
