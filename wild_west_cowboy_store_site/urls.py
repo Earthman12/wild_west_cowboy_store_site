@@ -37,13 +37,19 @@ urlpatterns = [
     path('logout/', logout_view, name = "logout"),
     path('login/', login_view, name = "login"),
     path('account/', account_view, name = "account"),
+    
     #   These urls were copied from the django source code from https://github.com/django/django/blob/main/django/contrib/auth/urls.py 
     #   The urls for login and logout were already made created because they we created seperately so they did not need to be copied here because here we are referencing prebuilt django views
     #   This has to be done because we chose to make a custom user account rather than use djangos
-    path('password_change/', auth_views.PasswordChangeView.as_view(), name='password_change'),#In order to customize the view, we have to pass in 'template_name' to reference which are custom built
-    path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(), name='password_change_done'),
+    path('password_change/', auth_views.PasswordChangeView.as_view(template_name='registration/password_change.html'), name='password_change'),#In order to customize the view, we have to pass in 'template_name' to the view we reference which are custom built
+
+    path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='registration/password_change_done.html'), name='password_change_done'),
+
     path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
-    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='registration/password_reset_done.html'), name='password_reset_done'),
+
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'), name='password_reset_complete'),
 ]
