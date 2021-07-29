@@ -28,6 +28,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#   Telling django how to send a password reset email
+if DEBUG:
+    #   Only for development, will change later to send a real email when project goes into production
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#   Will have an else statement for the production situation
 
 # Application definition
 
