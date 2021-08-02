@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 #   Using these django prepackaged to change the users password views but make a few changes
 from django.contrib.auth import views as auth_views
@@ -53,3 +55,10 @@ urlpatterns = [
     
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'), name='password_reset_complete'),
 ]
+
+#   If we are in a devoloper environment
+if settings.DEBUG:
+    #   Reference the static directories
+    urlpatterns += static(settings.STATIC_URL, documnent_root = settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, documnent_root = settings.MEDIA_ROOT)
+    #   This tells the project where the static_url/media_url/root is if we are in debug mode

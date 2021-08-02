@@ -133,7 +133,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+#   These static urls are required to be set up for static files
+
+#   This is a reference to where the directories will be located
+STATICFILES_DIRS = [#   Points to the static and media folders
+    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'media')
+]
+
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+#   These reference the path to the directory of where the project is stored. 'static_cdn' is a folder and stands for 'static content delivery network'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media_cdn')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
