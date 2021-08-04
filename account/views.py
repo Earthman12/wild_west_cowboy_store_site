@@ -116,3 +116,6 @@ def account_view(request):
         #   Finally add the form to the context
     context['account_form'] = form
     return render(request, 'account/account.html', context)
+
+def must_authenticate_view(request):
+    return render(request, 'account/must_authenticate.html', {})

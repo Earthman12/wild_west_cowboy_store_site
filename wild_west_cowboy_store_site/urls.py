@@ -30,16 +30,18 @@ from account.views import (
     logout_view,
     login_view,
     account_view,
+    must_authenticate_view,
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', store_home_view, name = "home"),
-    path('register/', registration_view, name = "register"),
-    path('logout/', logout_view, name = "logout"),
-    path('login/', login_view, name = "login"),
     path('account/', account_view, name = "account"),
+    path('admin/', admin.site.urls),
     path('blog/', include('blog.urls', 'blog')),#  This will add all of 'blogs' urls
+    path('login/', login_view, name = "login"),
+    path('logout/', logout_view, name = "logout"),
+    path('must_authenticate/', must_authenticate_view, name = "must_authenticate"),
+    path('register/', registration_view, name = "register"),
     
     #   These urls were copied from the django source code from https://github.com/django/django/blob/main/django/contrib/auth/urls.py 
     #   The urls for login and logout were already made created because they we created seperately so they did not need to be copied here because here we are referencing prebuilt django views
