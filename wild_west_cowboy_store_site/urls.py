@@ -62,6 +62,6 @@ urlpatterns = [
 #   If we are in a devoloper environment
 if settings.DEBUG:
     #   Reference the static directories
-    urlpatterns += static(settings.STATIC_URL, documnent_root = settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL, documnent_root = settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
     #   This tells the project where the static_url/media_url/root is if we are in debug mode

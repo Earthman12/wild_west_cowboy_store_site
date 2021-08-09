@@ -33,6 +33,11 @@
     .h3{
         text-align: center;
     }
+    .blog-posts{
+        max-width: 500px;
+        width: 100%;
+        margin: auto;
+    }
 </style>
 
 
@@ -73,38 +78,25 @@
     <a class = "m-auto" href = "{% url 'password_change' %}">Change Password</a>
 </div>
 
-<!--
-<h2>Account</h2>
-<form method="POST">
+<div class = "container mt-4 p-4">
+    <div class = "row">
+        <div class = "blog-posts">
+            <h3 class = "mb-3 font-weight-normal">Blog Posts:</h3>
+            {% if blog_posts %}
+            <ul>
+                {% for post in blog_posts %}
+                    <!-- '.slug' is added because the slug is being refereced inside the view -->
+                    <a href = "{% url 'blog:detail' post.slug %}" style = "text-decoration: none;">
+                        <li class = "list-group-item">{{post}}</li>
+                    </a>
+                {% endfor %}
+            </ul>
 
-    {% csrf_token %}
-
-    {% for field in account_form %}
-
-        <p>
-            {{field.label_tag}}
-            {{field}}
-
-            {% if field.help_text %}
-                <small style="color:green;">{{field.help_text}}</small>
+            {% else %}
+            <p>You ain't got any blog posts partner! Go <a href = "{% url 'blog:create' %}">here</a> to create a post.</p>
             {% endif %}
-
-            {% for error in field.errors %}
-                <p style="color:red;">{{error}}</p>
-            {% endfor %}
-        </p>
-
-    {% endfor %}
-
-    {% if account_form.non_field_errors %}
-        <div style = "color:crimson;">
-            <p>{{login_form.non_field_errors}}</p>
         </div>
-    {% endif %}
-
-    <button type="submit">Save Changes</button>
-
-</form>
--->
+    </div>
+</div>
 
 {% endblock content %}
