@@ -22,6 +22,12 @@
                 <h2 class = "card-title">{{blog_post.title}}</h2>
                 <!-- Adding 'safe' in the blog body enables the rendering of any html in the blog post text -->
                 <p class = "card-text">{{blog_post.body|safe}}</p>
+
+                <!-- If the authenticated user is the one who wrote the blog post, then add a link to edit the blog post -->
+                {% if blog_post.author == request.user %}
+                    <a href = "{% url 'blog:edit' blog_post.slug %}" class = "btn btn-primary">Update your post partner</a>
+                {% endif %}
+
             </div>
             <div class = "card-footer text-muted">
                 Updated on {{blog_post.date_updated}} by {{blog_post.author}}

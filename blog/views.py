@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect
 
 from blog.models import BlogPost
-from blog.forms import CreateBlogPostForm
+from blog.forms import CreateBlogPostForm, UpdateBlogPostForm
 from account.models import Account
 
 # Create your views here.
@@ -45,3 +45,38 @@ def detail_blog_view(request, slug):
     context['blog_post'] = blog_post
     
     return render(request, 'blog/detail_blog.html', context)
+
+def edit_blog_view(request, slug):
+    
+    context = {}
+
+    user = request.user
+
+    #   Check if user is authenticated
+    if not user.is_authenticated:
+        return redirect("must_authenticate")
+
+    #   Check for the blog post
+    blog_post = get_object_or_404(BlogPost, slug = slug)
+    if request.POST:
+        #   Just like above ^^^^^^ It will be a post request or nothing at all and because they are going to be able to upload an image the 'request.FILES' parameter to the form
+        form = UpdateBlogPostForm(request.POST or None, request.FILES or None, instance = blog_post)# 'blog_post' must be passed as the 'instance' 
+
+        if form.is_valid():
+            obj = form.save(commit = False)#This will load parameters into form giving access to the 'cleaned_data'
+            obj.save()
+            context['success_message'] = "Updated"
+            blog_post = obj
+
+    #   Setting initial values, this was done in the 'account' view
+    form = UpdateBlogPostForm(
+        initial={
+            "title" : blog_post.title,
+            "body" : blog_post.body,
+            "image" : blog_post.image,
+        }
+    )
+
+    context['form'] = form
+
+    return render(request, 'blog/edit_blog.html', context)
