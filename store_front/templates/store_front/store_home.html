@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -54,48 +55,49 @@
 
     </div>
 
+
     <div class = "row">
 
-        <h2>This is our blog full of what our customers have to say!</h2>
-
-        <!-- Right 'create post bar'--> <!-- 'col-lg-none' means hide it if it is large or bigger.  -->
-        <div class = "create-post-bar d-lg-none col-lg-7 offset-lg-1">
-            <!-- This is telling django to find the url 'create' in the 'blog' urls file-->
-            <a href = "{% url 'blog:create' %}">Create Post</a>
-
-        </div>
-        <!-- END Right 'create post bar'-->
-
-        <!-- Blog Feed --> <!-- In bootstrap there are 12 columns total so this say create 7 (out of the 12) and offset by 1 -->
+        <!-- Blog feed -->
         <div class = "left-column col-lg-7 offset-lg-1">
 
-            <div class = "blog-post-container">
-                <p>A blog post</p>
-            </div>
+            <!-- Top 'create post' bar -->
+            <!-- This is the top bar if the screen size is small because of 'd-lg-none' meaning if the screen size is large or bigger this whole div will disappear -->
+            <div class = "d-lg-none mb-3">
 
-            <div class = "blog-post-container">
-                <p>A blog post</p>
-            </div>
+                <div class = "card m-auto d-flex flex-column p-3">
 
-            <div class = "blog-post-container">
-                <p>A blog post</p>
-            </div>
+                    <p class = "m-auto"><a class = "btn btn-primary" href = "{% url 'blog:create' %}">Create a post partner</a></p>
 
+                </div>
+
+            </div>
+            <!-- End Top 'create post' bar -->
+
+            <!-- Blog posts -->
+            {% for post in blog_posts %}
+                <div class = "blog-post-container">
+
+                    {% include 'blog/snippets/blog_post_snippet.html' with blog_post=post %}
+
+                </div>
+            {% endfor %}
+            <!-- End Blog posts -->
+            
         </div>
-        <!-- END Blog Feed -->
+        <!-- End Blog feed -->
 
-        <!-- Right 'create post column'--> <!-- 'col-lg-3 d-lg-flex' means it will exist when there is a large screen and 'd-none' makes it invisible if it's smaller than a large screen -->
+        <!-- Right 'create post' column -->
         <div class = "right-column col-lg-3 d-lg-flex d-none flex-column">
 
-            <div class = "create-post-bar">
-                <p>More Stuff</p>
-                <p>More Stuff</p>
-                <p>More Stuff</p>
-                <a href = "{% url 'blog:create' %}">Create Post</a>
+            <div class = "card create-post-bar d-flex flex-column p-3">
+
+                <p class = "m-auto"><a class = "btn btn-primary" href = "{% url 'blog:create' %}">Create a post partner</a></p>
+
             </div>
 
         </div>
-        <!-- END Right 'create post column'-->
+        <!-- End Right 'create post' column -->
 
     </div>
 
