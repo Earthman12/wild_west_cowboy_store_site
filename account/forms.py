@@ -19,6 +19,7 @@ class RegistrationForm(UserCreationForm):
         fields = ("email", "username", "first_name", "last_name", "password1", "password2")
 
 
+
 #   Form for authenticating users
 class AccountAuthenticationForm(forms.ModelForm):
 
@@ -39,6 +40,7 @@ class AccountAuthenticationForm(forms.ModelForm):
 
             if not authenticate(email = email, password = password):
                 raise forms.ValidationError("Invalid Login Credentials")
+
 
 
 #   Form for updating user accounts

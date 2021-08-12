@@ -76,32 +76,4 @@
     <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 </form>
 
-<!--
-<h2>Register here partner</h2>
-<form method="POST">
-
-    {% csrf_token %}
-
-    {% for field in registration_form %}
-
-        <p>
-            {{field.label_tag}}
-            {{field}}
-
-            {% if field.help_text %}
-                <small style="color:green;">{{field.help_text}}</small>
-            {% endif %}
-
-            {% for error in field.errors %}
-                <p style="color:red;">{{error}}</p>
-            {% endfor %}
-        </p>
-
-    {% endfor %}
-
-    <button type="submit">Register</button>
-
-</form>
--->
-
 {% endblock content %}

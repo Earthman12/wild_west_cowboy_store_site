@@ -39,6 +39,7 @@ def create_blog_view(request):
     return render(request, "blog/create_blog.html", context)
 
 
+
 def detail_blog_view(request, slug):
 
     context = {}
@@ -47,6 +48,7 @@ def detail_blog_view(request, slug):
     context['blog_post'] = blog_post
     
     return render(request, 'blog/detail_blog.html', context)
+
 
 
 def edit_blog_view(request, slug):
@@ -83,6 +85,7 @@ def edit_blog_view(request, slug):
     context['form'] = form
 
     return render(request, 'blog/edit_blog.html', context)
+
 
 
 #   A function for getting a query set based on a particular search

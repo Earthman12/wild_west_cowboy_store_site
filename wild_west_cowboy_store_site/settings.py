@@ -80,7 +80,7 @@ TEMPLATES = [
     },
 ]
 
-#   Overrides default behavior for django user object and telling it that we are authenticating users with this custom one and need to tell django where it is
+#   Overrides default behavior for django user object and telling it that we are authenticating users with this custom one and need to tell django where it is, this one being in 'account.models.Account'
 AUTH_USER_MODEL = 'account.Account'
 
 WSGI_APPLICATION = 'wild_west_cowboy_store_site.wsgi.application'

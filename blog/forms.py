@@ -9,6 +9,8 @@ class CreateBlogPostForm(forms.ModelForm):
         model = BlogPost
         fields = ['title', 'body', 'image']
 
+
+
 #   A form for editing blog posts
 class UpdateBlogPostForm(forms.ModelForm):
 

@@ -14,7 +14,6 @@ def store_home_view(request):
     #   A 'select all query' from the database and passing it as context
     products = Product.objects.all()
     context['products'] = products
-
     
     #   Functionality to accept a query as input
     query = ""
