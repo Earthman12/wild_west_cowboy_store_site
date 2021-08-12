@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect
+from django.db.models import Q  # 'Q lookup' for searching
 
 from blog.models import BlogPost
 from blog.forms import CreateBlogPostForm, UpdateBlogPostForm
@@ -37,6 +38,7 @@ def create_blog_view(request):
 
     return render(request, "blog/create_blog.html", context)
 
+
 def detail_blog_view(request, slug):
 
     context = {}
@@ -45,6 +47,7 @@ def detail_blog_view(request, slug):
     context['blog_post'] = blog_post
     
     return render(request, 'blog/detail_blog.html', context)
+
 
 def edit_blog_view(request, slug):
     
@@ -80,3 +83,26 @@ def edit_blog_view(request, slug):
     context['form'] = form
 
     return render(request, 'blog/edit_blog.html', context)
+
+
+#   A function for getting a query set based on a particular search
+def get_blog_queryset(query = None):
+    #   'queryset' is a list
+    queryset = []
+    #   'queries' is a list of all the queries that were entered by the user. This takes whatever is entered and removes all the whitespace and puts it in a list and search them individually. Ex) django latest documentation = [django, latest, documentation] 
+    queries = query.split(" ")
+
+    for q in queries:
+        #   This will search for posts and will use 'Q lookup' to search 
+        posts = BlogPost.objects.filter(
+            #   'icontains' will get rid of any capitalization
+            Q(title__icontains = q)  |
+            Q(body__icontains = q)
+        ).distinct()    #'distinct()' will make sure all of the posts in the list that is retrieved is unique
+        
+        #   Loop through each post and append the post to a queryset
+        for post in posts:
+            queryset.append(post)
+
+    #   return the list but as a unique list. 'set' will make sure it's unique and then converting to a list to send to the template
+    return list(set(queryset))

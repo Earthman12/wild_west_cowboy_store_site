@@ -80,6 +80,11 @@
     border-bottom-color: #fff;
     }
 
+    .search-bar{
+        max-width: 350px;
+        width: 100%;
+    }
+
     @media (min-width: 48em) {
     .masthead-brand {
         float: left;
@@ -95,6 +100,15 @@
     <header class="masthead mb-auto">
       <div class="inner">
         <h3 class="masthead-brand">Wild West Cowboy Store</h3>
+
+        <!-- Search bar for blog posts -->
+        <div class = "search-bar mt-sm-2 mr-2">
+            <form method = "get">
+                <!-- The 'name' is q as referred to in the template -->
+                <input type = "text" class = "form-control" name = "q" id = "id_q" placeholder="Search our blog partner...">
+            </form>
+        </div>
+        <!-- End Search bar for blog posts -->
 
         <nav class="nav nav-masthead justify-content-center">
             {% if request.user.is_authenticated %}

@@ -1,16 +1,18 @@
 <style type="text/css">
 	.card{
 		max-width: 700px;
+		width: 100%
 	}
 	.card-body{
 		padding: 20px;
 	}
 </style>
 
+<!-- If there is a blog post -->
+{% if blog_post %}
+<!-- Blog Post -->
 <div class="container">
 	<div class="row">
-
-		<!-- Blog Post -->
 		<div class="card m-auto">
 
 			<a href="{% url 'blog:detail' post.slug %}">
@@ -40,6 +42,22 @@
             </div>
 
 		</div>
-        <!-- End Blog Post -->
 	</div>
 </div>
+<!-- End Blog Post -->
+
+<!-- If there is no blog post -->
+{% else %}
+<div class = "container">
+	<div class = "row">
+		<div class = "card m-auto">
+			<div class = "card-body mt-2 mb-2">
+				<h2 class = "card-title">It's a ghost town 'round here</h2>
+				<p class = "card-text">There were no results matching your search : "{{query}}", sorry partner.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endif %}
