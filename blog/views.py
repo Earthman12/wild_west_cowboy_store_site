@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.db.models import Q  # 'Q lookup' for searching
+from django.http import HttpResponse
 
 from blog.models import BlogPost
 from blog.forms import CreateBlogPostForm, UpdateBlogPostForm
@@ -63,6 +64,11 @@ def edit_blog_view(request, slug):
 
     #   Check for the blog post
     blog_post = get_object_or_404(BlogPost, slug = slug)
+
+    #   Check to see if the author of the blog is the current user
+    if blog_post.author != user:
+        return HttpResponse("Whoa slow your horses there partner, you don't seem to be writer of this post")
+
     if request.POST:
         #   Just like above ^^^^^^ It will be a post request or nothing at all and because they are going to be able to upload an image the 'request.FILES' parameter to the form
         form = UpdateBlogPostForm(request.POST or None, request.FILES or None, instance = blog_post)# 'blog_post' must be passed as the 'instance' 
