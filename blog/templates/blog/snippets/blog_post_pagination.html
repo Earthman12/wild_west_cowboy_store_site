@@ -1,0 +1,36 @@
+<!-- FILTERED Pagination -->
+<!-- THIS HTML CODE FOR PAGINATION SHOULD BE IDENTICAL FOR EVERY PROJECTS AS LONG AS VIEW IS SET UP PROPERLY -->
+<div class="d-flex flex-column m-auto pagination mt-5">
+    <nav aria-label="Page navigation">
+    <ul class="pagination pg-grey justify-content-center">
+        <!-- If the blog post has a previous page, display the link to click back to it -->
+        {% if blog_posts.has_previous %}
+            <li class="page-item">
+                <!-- The 'href' tag has django 'if' logic inside, '?' is required by url design. If there is a query, set 'q' equal to that query then end the 'if' and then set the page number -->
+              <a class="page-link" href="?{% if query %}q={{query}}&{% endif %}page={{ blog_posts.previous_page_number }}">&laquo; Previous</a>
+            </li>
+        {% endif %}
+    
+        <!-- Loops through the number of pages -->
+        {% for i in blog_posts.paginator.page_range %}
+            {% if blog_posts.number == i %}
+                <li class="page-item active"><a class="page-link">{{ i }}</a></li>
+            {% else %}
+                <!-- This 'href' tag is similar but is slightly different because it is in a different 'if' statement. If there is a query, set 'q' equal to the query and end if and then the page is set to different parameter -->
+                <li class="page-item" ><a class="page-link" href="?{% if query %}q={{query}}&{% endif %}page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+        
+        <!-- If the blog post has a next page -->
+        {% if blog_posts.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?{% if query %}q={{query}}&{% endif %}page={{ blog_posts.next_page_number }}">Next</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link"  href="?{% if query %}q={{query}}&{% endif %}page={{ blog_posts.paginator.num_pages }}">Last &raquo;</a>
+            </li>
+        {% endif %}
+    </ul>
+    </nav>
+    </div>
+    <!-- end pagination-->
