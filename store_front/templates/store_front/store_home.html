@@ -58,18 +58,17 @@
         <h2>These are some of our finest products!</h2>
 
         {% for product in products %}
-            <div class = "product">
+            <div class = "d-flex flex-column align-items-center product">
                 {% include 'store_front/snippets/body_snippet.html' with value=product %}
             </div>
     
         {%  endfor %}
-
     </div>
 
     <!-- Search bar for blog posts -->
     <div class = "search-bar mt-sm-2 mr-2">
         <form method = "get">
-            <!-- The 'name' is q as referred to in the template -->
+            <!-- The 'name' is q as referred to in the 'store_home' view. The search function is made the in the 'blog' view and called in the 'store_front' view -->
             <input type = "text" class = "form-control" name = "q" id = "id_q" placeholder="Search our blog partner...">
         </form>
     </div>

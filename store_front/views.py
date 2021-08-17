@@ -7,7 +7,7 @@ from blog.models import BlogPost
 from blog.views import get_blog_queryset
 
 #   Constant we define, is 1 for testing
-BLOG_POSTS_PER_PAGE = 2
+BLOG_POSTS_PER_PAGE = 5
 
 # Create your views here.
 
