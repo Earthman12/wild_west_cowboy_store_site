@@ -36,11 +36,17 @@
 		padding:0px;
 	}
 
+    .product{
+        border: 3px dotted white;
+        margin: 5px;
+        padding: 2px;
+        width: 50%
+    }
+
 </style>
 
 <div class = "container">
-    <div class = "d-flex flex-column">
-
+    <div class = "d-flex flex-column align-items-center">
         {% if request.user.is_authenticated %}
             <h1>Howdy {{request.user.username}} & Welcome to Wild West Cowboy Store!</h1>
 
@@ -52,11 +58,8 @@
         <h2>These are some of our finest products!</h2>
 
         {% for product in products %}
-    
-            <div style = "border: 3px dotted white; margin: 5px; padding: 2px">
-            
+            <div class = "product">
                 {% include 'store_front/snippets/body_snippet.html' with value=product %}
-    
             </div>
     
         {%  endfor %}
@@ -73,20 +76,14 @@
     <!-- End Search bar for blog posts -->
 
     <div class = "row">
-
         <!-- Blog feed -->
         <div class = "left-column col-lg-7 offset-lg-1">
-
             <!-- Top 'create post' bar -->
             <!-- This is the top bar if the screen size is small because of 'd-lg-none' meaning if the screen size is large or bigger this whole div will disappear -->
             <div class = "d-lg-none mb-3">
-
                 <div class = "card m-auto d-flex flex-column p-3">
-
                     <p class = "m-auto"><a class = "btn btn-primary" href = "{% url 'blog:create' %}">Create a post partner</a></p>
-
                 </div>
-
             </div>
             <!-- End Top 'create post' bar -->
 
@@ -109,24 +106,17 @@
 
             <!-- Pagination -->
             {% include 'blog/snippets/blog_post_pagination.html' with blog_posts=blog_posts %}
-            
         </div>
         <!-- End Blog feed -->        
 
         <!-- Right 'create post' column -->
         <div class = "right-column col-lg-3 d-lg-flex d-none flex-column">
-
             <div class = "card create-post-bar d-flex flex-column p-3">
-
                 <p class = "m-auto"><a class = "btn btn-primary" href = "{% url 'blog:create' %}">Create a post partner</a></p>
-
             </div>
-
         </div>
         <!-- End Right 'create post' column -->
-
     </div>
-
 </div>
 
 {% endblock content %}
