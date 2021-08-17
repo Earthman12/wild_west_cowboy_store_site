@@ -7,22 +7,14 @@
     */
 
     /* Links */
-    a,
+    a{
+        color: gray;
+    }
+
     a:focus,
     a:hover {
     color: #fff;
     }
-
-    /* Custom default button */
-    .btn-secondary,
-    .btn-secondary:hover,
-    .btn-secondary:focus {
-    color: #333;
-    text-shadow: none; /* Prevent inheritance from `body` */
-    background-color: #fff;
-    border: .05rem solid #fff;
-    }
-
 
     /*
     * Base structure
@@ -35,7 +27,6 @@
     }
 
     body {
-    display: -ms-flexbox;
     display: flex;
     color: #fff;
     text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
@@ -43,7 +34,7 @@
     }
 
     .cover-container {
-    max-width: 60%;
+    max-width: 100vw;
     }
 
 
@@ -96,7 +87,7 @@
 </style>
 <!-- Copied from Bootstrap Cover stylesheet -->
 
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+<div class="cover-container w-100 h-100 p-3 mx-auto flex-row">
     <header class="masthead mb-auto">
       <div class="inner">
         <h3 class="masthead-brand">Wild West Cowboy Store</h3>
@@ -132,5 +123,6 @@
       </div>
     </header>
 
-<h1>Howdy Partner & Welcome to Wild West Cowboy Store!</h1>
+    <h1>Howdy Partner & Welcome to Wild West Cowboy Store!</h1>
 
+</div>
