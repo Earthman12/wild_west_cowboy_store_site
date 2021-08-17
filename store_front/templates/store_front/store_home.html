@@ -41,6 +41,14 @@
 <div class = "container">
     <div class = "d-flex flex-column">
 
+        {% if request.user.is_authenticated %}
+            <h1>Howdy {{request.user.username}} & Welcome to Wild West Cowboy Store!</h1>
+
+        {% else %}
+            <h1>Howdy Partner & Welcome to Wild West Cowboy Store!</h1>
+
+        {% endif %}
+
         <h2>These are some of our finest products!</h2>
 
         {% for product in products %}
@@ -55,6 +63,14 @@
 
     </div>
 
+    <!-- Search bar for blog posts -->
+    <div class = "search-bar mt-sm-2 mr-2">
+        <form method = "get">
+            <!-- The 'name' is q as referred to in the template -->
+            <input type = "text" class = "form-control" name = "q" id = "id_q" placeholder="Search our blog partner...">
+        </form>
+    </div>
+    <!-- End Search bar for blog posts -->
 
     <div class = "row">
 
