@@ -87,40 +87,40 @@
 </style>
 <!-- Copied from Bootstrap Cover stylesheet -->
 
-<div class="cover-container w-100 h-100 p-3 mx-auto flex-row">
+<div class="cover-container w-100 p-3 mx-auto">
     <header class="masthead mb-auto">
-      <div class="inner">
-        <h3 class="masthead-brand">Wild West Cowboy Store</h3>
+        <div class="inner">
+            <h3 class="masthead-brand">Wild West Cowboy Store</h3>
 
-        <!-- Search bar for blog posts -->
-        <div class = "search-bar mt-sm-2 mr-2">
-            <form method = "get">
-                <!-- The 'name' is q as referred to in the template -->
-                <input type = "text" class = "form-control" name = "q" id = "id_q" placeholder="Search our blog partner...">
-            </form>
+            <!-- Search bar for blog posts -->
+            <div class = "search-bar mt-sm-2 mr-2">
+                <form method = "get">
+                    <!-- The 'name' is q as referred to in the template -->
+                    <input type = "text" class = "form-control" name = "q" id = "id_q" placeholder="Search our blog partner...">
+                </form>
+            </div>
+            <!-- End Search bar for blog posts -->
+
+            <nav class="nav nav-masthead justify-content-center">
+                {% if request.user.is_authenticated %}
+                    <p>
+                        <a class="nav-link active" href = "{% url 'home' %}">Home</a>
+                        <a class="nav-link" href = "{% url 'account' %}">Account</a>
+                        <a class="nav-link" href = "{% url 'logout' %}">Logout</a>
+                    </p>
+                    <p>Howdy, {{request.user.username}}</p>
+
+                {% else %}
+                    <p>
+                        <a class="nav-link active" href = "{% url 'home' %}">Home</a>
+                        <a class="nav-link" href = "{% url 'register' %}">Register</a>
+                        <a class="nav-link" href = "{% url 'login' %}">Login</a>
+                    </p>
+                
+                {% endif %}
+            </nav>
+
         </div>
-        <!-- End Search bar for blog posts -->
-
-        <nav class="nav nav-masthead justify-content-center">
-            {% if request.user.is_authenticated %}
-                <p>
-                    <a class="nav-link active" href = "{% url 'home' %}">Home</a>
-                    <a class="nav-link" href = "{% url 'account' %}">Account</a>
-                    <a class="nav-link" href = "{% url 'logout' %}">Logout</a>
-                </p>
-                <p>Howdy, {{request.user.username}}</p>
-
-            {% else %}
-                <p>
-                    <a class="nav-link active" href = "{% url 'home' %}">Home</a>
-                    <a class="nav-link" href = "{% url 'register' %}">Register</a>
-                    <a class="nav-link" href = "{% url 'login' %}">Login</a>
-                </p>
-            
-            {% endif %}
-        </nav>
-
-      </div>
     </header>
 
     <h1>Howdy Partner & Welcome to Wild West Cowboy Store!</h1>
