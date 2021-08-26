@@ -2,58 +2,97 @@
 
 {% block content %}
 
-<h2>Welcome to the blog partner</h2>
+<style type = "text/css">
 
-<!-- Search bar for blog posts -->
-<div class = "search-bar mt-sm-2 mr-2">
-    <form method = "get">
-        <!-- The 'name' is q as referred to in the 'store_home' view. The search function is made the in the 'blog' view and called in the 'store_front' view -->
-        <input type = "text" class = "form-control" name = "q" id = "id_q" placeholder="Search our blog partner...">
-    </form>
-</div>
-<!-- End Search bar for blog posts -->
+    .blog-post-container{
+		background-color: #fff;
+		margin-bottom: 20px;
+		width: 100%;
+	}
 
-<div class = "row">
-    <!-- Blog feed -->
-    <div class = "left-column col-lg-7 offset-lg-1">
-        <!-- Top 'create post' bar -->
-        <!-- This is the top bar if the screen size is small because of 'd-lg-none' meaning if the screen size is large or bigger this whole div will disappear -->
-        <div class = "d-lg-none mb-3">
-            <div class = "card m-auto d-flex flex-column p-3">
-                <p class = "m-auto"><a class = "btn btn-primary" href = "{% url 'blog:create' %}">Create a post partner</a></p>
-            </div>
+    .search-bar{
+        max-width: 75%;
+        width: 100%;
+        padding: .5rem 0;
+    }
+
+	.create-post-bar{
+		background-color: #fff;
+		margin-bottom:20px;
+	}
+
+	.left-column{
+		padding:0px;
+	}
+
+	.right-column{
+		padding:0px;
+	}
+
+</style>
+
+<div class = "container">
+
+    <div class = "d-flex flex-column align-items-center">
+
+        <h2>Welcome to our blog partner</h2>
+
+        <!-- Search bar for blog posts -->
+        <div class = "search-bar mt-sm-2 mr-2">
+            <form method = "get">
+                <!-- The 'name' is q as referred to in the 'store_home' view. The search function is made the in the 'blog' view and called in the 'store_front' view -->
+                <input type = "text" class = "form-control" name = "q" id = "id_q" placeholder="Search our blog partner...">
+            </form>
         </div>
-        <!-- End Top 'create post' bar -->
+        <!-- End Search bar for blog posts -->
 
-        <!-- Blog posts -->
-        {% if blog_posts %}<!-- If there are blog posts, display them -->
-            {% for post in blog_posts %}
-                <div class = "blog-post-container">
-
-                    {% include 'blog/snippets/blog_post_snippet.html' with blog_post=post %}
-
+        <div class = "row">
+            <!-- Blog feed -->
+            <div class = "left-column col-lg-7 offset-lg-1">
+                <!-- Top 'create post' bar -->
+                <!-- This is the top bar if the screen size is small because of 'd-lg-none' meaning if the screen size is large or bigger this whole div will disappear -->
+                <div class = "d-lg-none mb-3">
+                    <div class = "card m-auto d-flex flex-column p-3">
+                        <p class = "m-auto"><a class = "btn btn-primary" href = "{% url 'blog:create' %}">Create a post partner</a></p>
+                    </div>
                 </div>
-            {% endfor %}
+                <!-- End Top 'create post' bar -->
 
-        {% else %}<!-- Otherwise we do something else -->
-            <div class = "blog-post-container">
-                {% include 'blog/snippets/blog_post_snippet.html' with query=query %}
+                <!-- Blog posts -->
+                {% if blog_posts %}<!-- If there are blog posts, display them -->
+                    {% for post in blog_posts %}
+                        <div class = "blog-post-container">
+
+                            {% include 'blog/snippets/blog_post_snippet.html' with blog_post=post %}
+
+                        </div>
+                    {% endfor %}
+
+                {% else %}<!-- Otherwise we do something else -->
+                    <div class = "blog-post-container">
+                        {% include 'blog/snippets/blog_post_snippet.html' with query=query %}
+                    </div>
+                {% endif %}
+                <!-- End Blog posts -->
+
+                <!-- Pagination -->
+                {% include 'blog/snippets/blog_post_pagination.html' with blog_posts=blog_posts %}
             </div>
-        {% endif %}
-        <!-- End Blog posts -->
+            <!-- End Blog feed -->        
 
-        <!-- Pagination -->
-        {% include 'blog/snippets/blog_post_pagination.html' with blog_posts=blog_posts %}
-    </div>
-    <!-- End Blog feed -->        
-
-    <!-- Right 'create post' column -->
-    <div class = "right-column col-lg-3 d-lg-flex d-none flex-column">
-        <div class = "card create-post-bar d-flex flex-column p-3">
-            <p class = "m-auto"><a class = "btn btn-primary" href = "{% url 'blog:create' %}">Create a post partner</a></p>
+            <!-- Right 'create post' column -->
+            <div class = "right-column col-lg-3 d-lg-flex d-none flex-column">
+                <div class = "card create-post-bar d-flex flex-column p-3">
+                    <p class = "m-auto"><a class = "btn btn-primary" href = "{% url 'blog:create' %}">Create a post partner</a></p>
+                </div>
+            </div>
+            <!-- End Right 'create post' column -->
         </div>
+
     </div>
-    <!-- End Right 'create post' column -->
+
 </div>
+
+
 
 {% endblock content %}
