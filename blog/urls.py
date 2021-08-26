@@ -1,5 +1,6 @@
 from django.urls import path
 from blog.views import (
+    blog_home_view,
     create_blog_view,
     detail_blog_view,
     edit_blog_view,
@@ -9,6 +10,7 @@ from blog.views import (
 app_name = 'blog'
 
 urlpatterns = [
+    path('', blog_home_view, name = "blog_home"),
     path('create/', create_blog_view, name =  "create"),
     #   '<slug>' will make the url the slug name of the blog post
     path('<slug>/', detail_blog_view, name =  "detail"),
