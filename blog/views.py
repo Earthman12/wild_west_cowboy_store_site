@@ -48,6 +48,7 @@ def blog_home_view(request):
     return render(request, "blog/blog_home.html", context)
 
 
+
 def create_blog_view(request):
 
     context = {}
