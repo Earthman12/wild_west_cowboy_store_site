@@ -111,7 +111,7 @@ def edit_blog_view(request, slug):
         return HttpResponse("Whoa slow your horses there partner, you don't seem to be writer of this post")
 
     if request.POST:
-        #   Just like above ^^^^^^ It will be a post request or nothing at all and because they are going to be able to upload an image the 'request.FILES' parameter to the form
+        #   Just like above ^^^^^^ It will be a post request or nothing at all and because they are going to be able to upload an image, pass the 'request.FILES' parameter to the form
         form = UpdateBlogPostForm(request.POST or None, request.FILES or None, instance = blog_post)# 'blog_post' must be passed as the 'instance' 
 
         if form.is_valid():
