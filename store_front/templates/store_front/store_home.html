@@ -12,13 +12,15 @@
         width: 50%
     }
     
-    .container{
+    .product-container{
+        margin: auto;
+        width: 75vw;
         border: 3px solid white;
     }
 
 </style>
 
-<div class = "container">
+<div class = "product-container">
     <div class = "d-flex flex-column align-items-center">
         {% if request.user.is_authenticated %}
             <h1>Howdy {{request.user.username}} & Welcome to Wild West Cowboy Store!</h1>
