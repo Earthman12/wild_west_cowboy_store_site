@@ -1,10 +1,11 @@
 <style type="text/css">
 	.card{
 		max-width: 700px;
-		width: 100%
+		width: 100%;
 	}
 	.card-body{
 		padding: 20px;
+		color: black;
 	}
 </style>
 
@@ -14,15 +15,13 @@
 <div class="container">
 	<div class="row">
 		<div class="card m-auto">
-
 			<a href="{% url 'blog:detail' post.slug %}">
-				<img class="card-img-top" src="{{blog_post.image.url}}">
+				<h2 class="card-title px-2">{{blog_post.title}}</h2>
 			</a>
 			
 			<div class="card-body mt-2 mb-2">
-
 				<a href="{% url 'blog:detail' post.slug %}">
-					<h2 class="card-title">{{blog_post.title}}</h2>
+					<img class="card-img-top" src="{{blog_post.image.url}}">
 				</a>
                 <!-- Don't use 'safe' in a production site, 'safe' allows users to write HTML into the website and it will render making it a big security risk, can use JS to manipulate the database -->
 				<p class="card-text">{{blog_post.body|safe|truncatechars:250}}</p>

@@ -11,15 +11,20 @@
         padding: 20px;
     }
 
+    .card-text,
+    .card-title{
+        color: black;
+    }
+
 </style>
 
 <div class = "container">
     <div class = "row">
         <!-- Blog Post-->
         <div class = "card m-auto">
-            <img class = "card-img-top" src = "{{blog_post.image.url}}">
+            <h2 class = "card-title px-3">{{blog_post.title}}</h2>
             <div class = "card-body my-2">
-                <h2 class = "card-title">{{blog_post.title}}</h2>
+                <img class = "card-img-top" src = "{{blog_post.image.url}}">
                 <!-- Adding 'safe' in the blog body enables the rendering of any html in the blog post text -->
                 <p class = "card-text">{{blog_post.body|safe}}</p>
 

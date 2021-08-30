@@ -29,6 +29,18 @@
 		padding:0px;
 	}
 
+    @media (max-width: 768px) { 
+		.right-column{
+			margin-left: 0px;
+		}
+	}
+
+	@media (min-width: 768px) { 
+		.right-column{
+			margin-left: 20px;
+		}
+	}
+
 </style>
 
 <div class = "container">
@@ -62,9 +74,7 @@
                 {% if blog_posts %}<!-- If there are blog posts, display them -->
                     {% for post in blog_posts %}
                         <div class = "blog-post-container">
-
                             {% include 'blog/snippets/blog_post_snippet.html' with blog_post=post %}
-
                         </div>
                     {% endfor %}
 
@@ -81,7 +91,7 @@
             <!-- End Blog feed -->        
 
             <!-- Right 'create post' column -->
-            <div class = "right-column col-lg-3 d-lg-flex d-none flex-column">
+            <div class = "right-column col-lg-3 d-lg-flex d-none flex-column px-3">
                 <div class = "card create-post-bar d-flex flex-column p-3">
                     <p class = "m-auto"><a class = "btn btn-primary" href = "{% url 'blog:create' %}">Create a post partner</a></p>
                 </div>
