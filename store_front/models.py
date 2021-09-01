@@ -5,9 +5,8 @@ from django.db import models
 
 #   Function for defining the upload location for the images that will be associated with the product. This is taken from blog model
 def upload_location(instance, filename, **kwargs):
-    #   'product_id' is the id of the product, 'product_name' is the name of the product, 'filename' is the name of file that comes from the computer of the one who uploads it. .format() converts it all to a string
-    file_path = 'store_home/{product_id}/{product_name}-{filename}'.format(
-        product_id = str(instance.id), product_name = str(instance.name), filename = filename
+    #   'product_name' is the name of the product, 'filename' is the name of file that comes from the computer of the one who uploads it. .format() converts it all to a string
+    file_path = 'store_home/{product_name}-{filename}'.format(product_name = str(instance.name), filename = filename
     )
     return file_path
 
