@@ -66,9 +66,7 @@
     {% endif %}
 
     {% if success_message %}
-
         <p style = "color:chartreuse;">{{success_message}}</p>
-
     {% endif %}
     
     <button class="btn btn-lg btn-primary btn-block" type="submit">Save Changes</button>
@@ -86,7 +84,7 @@
             <ul>
                 {% for post in blog_posts %}
                     <!-- '.slug' is added because the slug is being refereced inside the view -->
-                    <a href = "{% url 'blog:detail' post.slug %}" style = "text-decoration: none;">
+                    <a href = "{% url 'blog:detail' post.slug %}" style = "text-decoration: underline;">
                         <li class = "list-group-item">{{post}}</li>
                     </a>
                 {% endfor %}
