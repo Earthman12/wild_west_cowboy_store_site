@@ -34,14 +34,14 @@
 
             <div class = "d-flex">
                 {% for product in products %}
-                <div class = "product m-auto p-3">
+                <div class = "product my-auto mx-2 p-3">
                     {% include 'store_front/snippets/body_snippet.html' with value=product %}
                 </div>
                 {%  endfor %}
             </div>
         <!-- End Products -->
 
-            <h1 class = "text-center">Please get in contact with our ranch hands regarding any purchases!</h1>
+            <h1 class = "text-center">Please get in contact with our ranch hands regarding any purchases and sizing!</h1>
 
         {% else %}
             <h2>Looks like we better start stockin' the shelves!</h2>
