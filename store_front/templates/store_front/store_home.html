@@ -4,19 +4,14 @@
 {% block content %}
 
 <style type="text/css">
-
     .product{
         border: 3px dotted white;
-        margin: 5px;
-        padding: 2px;
-        width: 50%
     }
     
     .store-body{
         margin: auto;
         width: 90%;
     }
-
 </style>
 
 <div class = "container">
@@ -33,15 +28,18 @@
             <img src = "{% static 'store_home_photo.jpg' %}">
         </div>
 
+        <!-- Products -->
         {% if products %}
             <h2>These are some of our finest products!</h2>
 
-            {% for product in products %}
-                <div class = "d-flex flex-column align-items-center product">
+            <div class = "d-flex">
+                {% for product in products %}
+                <div class = "product m-auto p-3">
                     {% include 'store_front/snippets/body_snippet.html' with value=product %}
                 </div>
-        
-            {%  endfor %}
+                {%  endfor %}
+            </div>
+        <!-- End Products -->
 
             <h1 class = "text-center">Please get in contact with our ranch hands regarding any purchases!</h1>
 
