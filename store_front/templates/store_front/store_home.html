@@ -31,9 +31,9 @@
         {% if products %}
             <h2>These are some of our finest products!</h2>
 
-            <div class = "row col-md-12 justify-content-center">
+            <div class = "row col-md-12">
                 {% for product in products %}
-                <div class = "col-4 product m-auto p-2">
+                <div class = "d-flex flex-column col-4 product m-auto p-2">
                     {% include 'store_front/snippets/body_snippet.html' with value=product %}
                 </div>
                 {%  endfor %}
