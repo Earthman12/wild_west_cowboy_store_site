@@ -1,3 +1,4 @@
+{% load static %}
 <!---BootStrap style sheet-->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -64,6 +65,8 @@
             <h1>
                 <a class = "masthead-brand float-left p-2" href = "{% url 'home' %}">Wild West Cowboy Store</a>
             </h1>
+
+            <img src = "{% static 'header_image.png' %}">
 
             <nav class="nav nav-masthead float-right d-flex flex-row p-2">
                 {% if request.user.is_authenticated %}
