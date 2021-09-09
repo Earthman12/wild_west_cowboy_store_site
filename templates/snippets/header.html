@@ -31,15 +31,14 @@
     margin: auto;
     min-height: 5rem;
     width: 90%;
-    border: 5px dotted white;
     }
 
     /*
     * Header
     */
 
-    .masthead-brand {
-    color: #fff;
+    .header_image {
+    width: 50%;
     }
 
     .nav-masthead .nav-link {
@@ -62,12 +61,14 @@
 <div class="container-fluid p-3 mx-auto">
     <header class="masthead mb-auto">
         <div class = "cover-container">
+            <!--
             <h1>
                 <a class = "masthead-brand float-left p-2" href = "{% url 'home' %}">Wild West Cowboy Store</a>
             </h1>
+            -->
 
-            <div class = "img-thumbnail">
-                <img src = "{% static 'header_image.png' %}">
+            <div class =  "d-flex flex-row img-thumbnail rounded">
+                <img class = "header_image" src = "{% static 'header_image.png' %}">
             </div>
 
             <nav class="nav nav-masthead float-right d-flex flex-row p-2">
