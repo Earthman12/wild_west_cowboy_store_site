@@ -11,6 +11,10 @@
     .store-body{
         width: 100%;
     }
+    .welcome_photo{
+        height: 30rem;
+        width: auto;
+    }
 </style>
 
 <div class = "container">
@@ -23,8 +27,8 @@
 
         {% endif %}
 
-        <div class = "d-flex flex-column img-thumbnail rounded welcome_photo">
-            <img src = "{% static 'store_home_photo.jpg' %}">
+        <div class = "d-flex flex-column img-thumbnail rounded">
+            <img class = "welcome_photo" src = "{% static 'store_home_photo.jpg' %}">
         </div>
 
         <!-- Products -->
