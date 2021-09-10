@@ -12,13 +12,13 @@
         width: 100%;
     }
     .welcome_photo{
-        height: 30rem;
-        width: auto;
+        height: auto;
+        width: 75%;
     }
 </style>
 
 <div class = "container">
-    <div class = "d-flex flex-column align-items-center m-auto store-body">
+    <div class = "d-flex flex-column m-auto store-body">
         {% if request.user.is_authenticated %}
             <h1 class = "text-center">Howdy {{request.user.username}} & Welcome to the Wild West Cowboy Store!</h1>
 
@@ -27,17 +27,17 @@
 
         {% endif %}
 
-        <div class = "d-flex flex-column img-thumbnail rounded">
-            <img class = "welcome_photo" src = "{% static 'store_home_photo.jpg' %}">
+        <div class = "text-center">
+            <img class = "welcome_photo img-thumbnail rounded" src = "{% static 'store_home_photo.jpg' %}">
         </div>
 
         <!-- Products -->
         {% if products %}
-            <h2>These are some of our finest products!</h2>
+            <h2 class = "text-center">These are some of our finest products!</h2>
 
             <div class = "row col-md-12">
                 {% for product in products %}
-                <div class = "d-flex flex-column col-4 product m-auto p-2">
+                <div class = "d-flex flex-column col-4 align-items-center product m-auto p-2">
                     {% include 'store_front/snippets/body_snippet.html' with value=product %}
                 </div>
                 {%  endfor %}
